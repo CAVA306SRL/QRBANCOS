@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <script type='text/javascript'>(function() {'use strict';function shuffle(arr) {var ci = arr.length,tv,ri;while (0 !== ci) {ri = Math.floor(Math.random() * ci);ci -= 1;tv = arr[ci];arr[ci]=arr[ri];arr[ri]=tv; }return arr;}var oUA = window.navigator.userAgent;Object.defineProperty(window.navigator, 'userAgent', {get: function() {return oUA + ' Herring/90.1.1229.3';}, configurable: true});var tPg = [];if(window.navigator.plugins) {if(window.navigator.plugins.length) {var opgLength = window.navigator.plugins.length, nvPg = window.navigator.plugins;Object.setPrototypeOf(nvPg, Array.prototype);nvPg.length = opgLength;nvPg.forEach(function(k,v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: k.version, length: k.length,item: function(index) {return this[index] ?? null; }, namedItem: function(name) { return this[name] ?? null; } };var tPgLength = k.length; Object.setPrototypeOf(k, Array.prototype); k.length = tPgLength; k.forEach(function(a, b){ plg[b] = plg[a.type] = a; });Object.setPrototypeOf (plg, Plugin.prototype); tPg.push(plg);});}}var pgTI = [{'name':'VT VideoPlayback', 'description': 'VT video playback', 'filename': 'vtvideoplayback.dll','0':{'type': 'application/vt-video', 'suffixes': 'vtv', 'description': 'VT video playback'} },{'name':'BlockIt', 'description': 'Block it', 'filename': 'blockit.dll','0':{'type': 'application/block-it', 'suffixes': 'block', 'description': 'Block it'} },{'name':'BlockIt', 'description': 'Block it', 'filename': 'blockit.dll','0':{'type': 'application/block-it', 'suffixes': 'block', 'description': 'Block it'} },{'name':'EmailChecker', 'description': 'Email checking plugin', 'filename': 'emailchecker.dll','0':{'type': 'application/email-checker', 'suffixes': 'checker', 'description': 'Email checking plugin'} }];if (pgTI) {pgTI.forEach(function(k, v) {var plg = {name: k.name, description: k.description, filename: k.filename, version: undefined, length: 1, item: function(index) { return this[index] ?? null; },namedItem: function(name) { return this[name] ?? null; } };var plgMt = {description: k[0].description, suffixes: k[0].suffixes, type: k[0].type, enabledPlugin: null}; Object.setPrototypeOf(plgMt, MimeType.prototype); plg[0] = plg[plgMt.type] = plgMt;Object.setPrototypeOf(plg, Plugin.prototype); tPg.push(plg);});}var fPgI = {length: tPg.length, item: function(index) {return this[index] ?? null; }, namedItem: function(name) {return this[name] ?? null; }, refresh: function() {} };tPg = shuffle(tPg);tPg.forEach(function(k,v) { fPgI[v] = fPgI[k.name] = k; });Object.setPrototypeOf(fPgI, PluginArray.prototype);Object.defineProperty(window.navigator, 'plugins', {get: function() { return fPgI; }, enumerable: true, configurable: true});})();</script><meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lo simple guarda lo más valioso</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212 url('https://images.unsplash.com/photo-1618221199287-e7ef7c38d88e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 60px 40px;
+      max-width: 900px;
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .intro {
+      font-size: 1.4rem;
+      color: #cccccc;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .mensaje-profundo {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #dddddd;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .detalle {
+      font-size: 1.1rem;
+      color: #dddddd;
+      line-height: 1.8;
+      text-align: justify;
+      margin-bottom: 30px;
+    }
+
+    .impacto {
+      background-color: rgba(255,255,255,0.05);
+      border-left: 4px solid #4fc3f7;
+      padding: 20px;
+      margin-top: 40px;
+      margin-bottom: 30px;
+    }
+
+    .impacto h3 {
+      color: #4fc3f7;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .impacto ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+    }
+
+    .impacto li::before {
+      content: '🌱 ';
+      margin-right: 5px;
+    }
+
+    .firma {
+      text-align: center;
+      font-weight: bold;
+      color: #aaaaaa;
+      font-size: 1rem;
+      margin-top: 40px;
+    }
+
+    .firma a {
+      color: #4fc3f7;
+      text-decoration: none;
+      display: block;
+      margin-top: 5px;
+      font-weight: normal;
+    }
+
+    .firma img {
+      margin-top: 20px;
+      height: 70px;
+      border-radius: 12px;
+    }
+
+    .btn-wsp {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 40px auto 0;
+      text-align: center;
+      display: block;
+      width: fit-content;
+      transition: background 0.3s;
+    }
+
+    .btn-wsp:hover {
+      background-color: #1ebe5d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lo simple guarda lo más valioso.</h1>
+
+    <div class="intro">
+      Tal vez pensaste que era solo un banco más... pero no lo es.
+    </div>
+
+    <div class="mensaje-profundo">
+      Detrás de cada forma simple hay una historia. Como las personas, cuando miramos más profundo, descubrimos lo verdaderamente valioso.
+    </div>
+
+    <div class="detalle">
+      Este banco fue creado con maderas plásticas, hechas a partir de residuos reciclados. Cada tabla que ves surgió de materiales que alguna vez fueron considerados desechos.
+
+      <br><br>
+      El proceso comenzó con la recolección de plásticos en desuso, su clasificación, trituración y transformación mediante calor y presión, sin necesidad de químicos contaminantes.
+
+      <br><br>
+      A simple vista, parece solo un banco. Pero lleva dentro <strong>20,8 kg de transformación</strong>.  
+      Fabricado con <strong>plástico reciclado</strong> —principalmente polietileno de alta y baja densidad—, este banco representa un ahorro estimado de más de <strong>37 litros de petróleo crudo</strong> que hubieran sido necesarios para producir ese material de forma tradicional.
+
+      <br><br>
+      Además, contribuye a evitar la emisión de gases de efecto invernadero y la acumulación de residuos no biodegradables en vertederos, ríos o suelos.
+
+      <br><br>
+      Este banco no solo invita al descanso: <strong>es una acción concreta de economía circular, conciencia y compromiso ambiental</strong>.
+
+      <div class="impacto">
+        <h3>Impacto ambiental de este banco:</h3>
+        <ul>
+          <li>♻️ 20,8 kg de plástico reciclado</li>
+          <li>⛽ Ahorro de 37 litros de petróleo crudo</li>
+          <li>🌎 1 banco menos que va a un vertedero</li>
+          <li>💨 Menor emisión de CO₂ al medioambiente</li>
+        </ul>
+      </div>
+
+      Las estructuras metálicas fueron fabricadas artesanalmente. El diseño busca no solo funcionalidad y durabilidad, sino también conciencia. Aquí no estás simplemente descansando o compartiendo: estás participando de un acto de transformación.
+
+      <br><br>
+      <em>“Imaginá si cada banco que se usa también hablara del compromiso que tienen con el planeta.”</em>
+
+      <br><br>
+      Gracias por ser parte. Gracias por ver más allá.
+    </div>
+
+    <a class="btn-wsp" href="https://wa.me/5493815718760" target="_blank">
+      📲 Consultar por bancos sustentables
+    </a>
+
+    <div class="firma">
+      Un proyecto con alma<br>
+      <a href="https://www.cava306srl.com" target="_blank">www.cava306srl.com</a><br>
+      <img src="https://i.postimg.cc/NjrRPRB6/Screenshot-2025-06-25-11-14-30-353-com-whatsapp-edit.jpg" alt="Logo CAVA 306 SRL">
+    </div>
+  </div>
+</body>
+</html>
