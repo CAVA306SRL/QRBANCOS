@@ -77,15 +77,21 @@
       font-size: 1.3rem;
     }
 
-    .impacto ul {
+    .impacto-lista {
       list-style: none;
       padding: 0;
-      line-height: 1.8;
+      margin: 0;
     }
 
-    .impacto li::before {
-      content: '🌱 ';
-      margin-right: 5px;
+    .impacto-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .impacto-lista li span {
+      flex-shrink: 0;
     }
 
     .firma {
@@ -143,17 +149,14 @@
     </div>
 
     <div class="detalle">
-      Este banco fue creado por el área <strong>Eco Lineal</strong> de <strong>CAVA 306 SRL</strong>, una división comprometida con impulsar acciones sustentables y responsables con el ambiente.
+      Este banco fue creado con maderas plásticas, hechas a partir de residuos reciclados. Cada tabla que ves surgió de materiales que alguna vez fueron considerados desechos.
 
       <br><br>
-      Eco Lineal desarrolla soluciones ecológicas como merenderos, postes y bancos fabricados con maderas plásticas provenientes de residuos reciclados. Cada tabla que ves en este banco surgió de materiales que alguna vez fueron considerados desechos.
-
-      <br><br>
-      El proceso comienza con la recolección de plásticos en desuso, su clasificación, trituración y transformación mediante calor y presión, sin necesidad de químicos contaminantes.
+      El proceso comenzó con la recolección de plásticos en desuso, su clasificación, trituración y transformación mediante calor y presión, sin necesidad de químicos contaminantes.
 
       <br><br>
       A simple vista, parece solo un banco. Pero lleva dentro <strong>20,8 kg de transformación</strong>.  
-      Fabricado con <strong>plástico reciclado</strong> principalmente polietileno de alta y baja densidad, este banco representa un ahorro estimado de más de <strong>37 litros de petróleo crudo</strong> que hubieran sido necesarios para producir ese material de forma tradicional.
+      Fabricado con <strong>plástico reciclado</strong> —principalmente polietileno de alta y baja densidad—, este banco representa un ahorro estimado de más de <strong>37 litros de petróleo crudo</strong> que hubieran sido necesarios para producir ese material de forma tradicional.
 
       <br><br>
       Además, contribuye a evitar la emisión de gases de efecto invernadero y la acumulación de residuos no biodegradables en vertederos, ríos o suelos.
@@ -163,11 +166,11 @@
 
       <div class="impacto">
         <h3>Impacto ambiental de este banco:</h3>
-        <ul>
-          <li>♻️ 20,8 kg de plástico reciclado</li>
-          <li>⛽ Ahorro de 37 litros de petróleo crudo</li>
-          <li>🌎 Kilos de desecho que no van a un vertedero</li>
-          <li>💨 Menor emisión de CO₂ al medioambiente</li>
+        <ul class="impacto-lista">
+          <li><span>♻️</span> 20,8 kg de plástico reciclado</li>
+          <li><span>⛽</span> Ahorro de 37 litros de petróleo crudo</li>
+          <li><span>🌍</span> Kilos de desecho que no van a un vertedero</li>
+          <li><span>💨</span> Menor emisión de CO₂ al medioambiente</li>
         </ul>
       </div>
 
@@ -178,6 +181,9 @@
 
       <br><br>
       Gracias por ser parte. Gracias por ver más allá.
+
+      <br><br>
+      <strong>Este proyecto fue impulsado por <span style="color:#4fc3f7;">EcoLineal</span>, el área sustentable de <span style="color:#4fc3f7;">CAVA 306 SRL</span>, comprometida con acciones que regeneran y revalorizan nuestro entorno.</strong>
     </div>
 
     <a class="btn-wsp" href="https://wa.me/5493815718760" target="_blank">
