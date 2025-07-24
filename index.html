@@ -7,46 +7,63 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #f0f0f0, #c0e0d0);
+      background: linear-gradient(135deg, #e0f7f1, #b8e2d0);
       text-align: center;
       padding: 20px;
+      color: #2e4d3c;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #ruleta-container {
+      position: relative;
+      display: inline-block;
+    }
+    #flecha-svg {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(-90%, -50%) rotate(0deg);
+      width: 60px;
+      height: 60px;
+      z-index: 10;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    #flecha-svg.pulso {
+      animation: pulso 1s ease-in-out 1;
+    }
+    @keyframes pulso {
+      0% { transform: translate(-90%, -50%) scale(1); }
+      50% { transform: translate(-90%, -50%) scale(1.2); }
+      100% { transform: translate(-90%, -50%) scale(1); }
     }
     #ruleta {
       width: 300px;
       height: 300px;
-      border: 10px solid #333;
+      border: 12px solid #2e4d3c;
       border-radius: 50%;
-      margin: 30px auto;
-      position: relative;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-    #puntero {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      margin-left: -10px;
-      width: 0;
-      height: 0;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-bottom: 20px solid red;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
     }
     #girarBtn {
-      padding: 10px 20px;
+      padding: 12px 28px;
       font-size: 18px;
-      background-color: #009688;
+      background-color: #007e66;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      margin-top: 20px;
     }
-    #resultado {
+    #resultado, #seleccionado {
       margin-top: 30px;
       padding: 20px;
-      background: white;
+      background: #ffffff;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .btn-whatsapp, .btn-cava {
       display: inline-block;
@@ -55,26 +72,74 @@
       border-radius: 5px;
       text-decoration: none;
       color: white;
+      font-weight: bold;
     }
     .btn-whatsapp {
       background: #25D366;
     }
     .btn-cava {
-      background: #3f51b5;
+      background: #2b6cb0;
+    }
+    .burbujas {
+      position: fixed;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .burbuja {
+      position: absolute;
+      bottom: -50px;
+      width: 15px;
+      height: 15px;
+      background: rgba(0,150,136,0.4);
+      border-radius: 50%;
+      animation: subir 10s linear infinite;
+    }
+    @keyframes subir {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <h1>🌱 Ruleta de Historias - CAVA 306</h1>
-  <div id="ruleta">
-    <div id="puntero"></div>
-    <canvas id="canvas" width="300" height="300"></canvas>
+  <h1>🌿 Ruleta de Historias - CAVA 306</h1>
+
+  <div id="ruleta-container">
+    <svg id="flecha-svg" viewBox="0 0 100 100">
+      <polygon points="0,50 100,25 100,75" fill="#009688" stroke="#004d40" stroke-width="3" />
+    </svg>
+    <div id="ruleta">
+      <canvas id="canvas" width="300" height="300"></canvas>
+    </div>
   </div>
+
   <button id="girarBtn">🎯 Girar / Detener</button>
 
+  <div id="seleccionado"><strong>Resultado:</strong> <span id="nombreSeleccionado">---</span></div>
   <div id="resultado"></div>
+  <div class="burbujas" id="burbujas"></div>
+
+  <audio id="sonido" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
 
   <script>
+    const sonido = document.getElementById("sonido");
+    const burbujasContenedor = document.getElementById("burbujas");
+    function lanzarBurbujas() {
+      for (let i = 0; i < 10; i++) {
+        const b = document.createElement("div");
+        b.classList.add("burbuja");
+        b.style.left = Math.random() * 100 + "%";
+        b.style.animationDuration = (6 + Math.random() * 4) + "s";
+        b.style.width = b.style.height = (10 + Math.random() * 10) + "px";
+        burbujasContenedor.appendChild(b);
+        setTimeout(() => b.remove(), 10000);
+      }
+    }
+
     const ajustesGenerales = `🟣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
 
     const sectores = [
@@ -115,14 +180,17 @@
         ctx.translate(150, 150);
         ctx.rotate(inicio + arc / 2);
         ctx.fillStyle = "#000";
-        ctx.font = "bold 14px sans-serif";
+        ctx.font = "bold 13px sans-serif";
         ctx.fillText(sectores[i].nombre, 30, 5);
         ctx.restore();
       }
     }
 
     function animar() {
-      if (!girando && velocidad <= 0) return;
+      if (!girando && velocidad <= 0) {
+        mostrarResultado();
+        return;
+      }
       angulo += velocidad;
       velocidad *= 0.98;
       if (velocidad < 0.002) velocidad = 0;
@@ -132,14 +200,24 @@
     }
 
     document.getElementById("girarBtn").onclick = () => {
+      const flecha = document.getElementById("flecha-svg");
+      flecha.classList.remove("pulso");
       if (!girando) {
         velocidad = Math.random() * 0.3 + 0.3;
         girando = true;
         animar();
-        setTimeout(() => girando = false, 3000);
+        setTimeout(() => {
+          girando = false;
+          flecha.classList.add("pulso");
+          lanzarBurbujas();
+          sonido.play();
+        }, 3000);
       } else {
         girando = false;
         velocidad = 0;
+        flecha.classList.add("pulso");
+        lanzarBurbujas();
+        sonido.play();
         mostrarResultado();
       }
     }
@@ -148,6 +226,7 @@
       const total = sectores.length;
       const index = Math.floor((total - ((angulo % (2 * Math.PI)) / (2 * Math.PI)) * total)) % total;
       const seleccionado = sectores[index];
+      document.getElementById("nombreSeleccionado").innerText = seleccionado.nombre;
       const resultado = document.getElementById("resultado");
       resultado.innerHTML = `
         <h2>${seleccionado.titulo}</h2>
