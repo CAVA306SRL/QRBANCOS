@@ -123,11 +123,17 @@
   <div id="resultado"></div>
   <div class="burbujas" id="burbujas"></div>
 
-  <audio id="sonido" src="https://cdn.pixabay.com/download/audio/2022/03/14/audio_6b00163574.mp3" preload="auto"></audio>
+  <audio id="sonido" src="https://cdn.pixabay.com/audio/2022/03/14/audio_6b00163574.mp3" preload="auto"></audio>
 
   <script>
     const sonido = document.getElementById("sonido");
     const burbujasContenedor = document.getElementById("burbujas");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let angulo = 0;
+    let velocidad = 0;
+    let girando = false;
+
     function lanzarBurbujas() {
       for (let i = 0; i < 10; i++) {
         const b = document.createElement("div");
@@ -143,14 +149,8 @@
     const ajustesGenerales = `💣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
 
     const sectores = [
-      {
-        nombre: "Lucha de las Mujeres",
-        mensaje: `♀️ Este banco también sostiene una historia de lucha.<br><br>${ajustesGenerales}<br><br>🔹 Hecho por mujeres. Hecho por el planeta.`
-      },
-      {
-        nombre: "La Cuesta de la Vida",
-        mensaje: `🪑 Este banco representa el apoyo en los momentos difíciles.<br><br>${ajustesGenerales}<br><br>🔹 Para construir comunidad.`
-      },
+      { nombre: "Lucha de las Mujeres", mensaje: `♀️ Este banco también sostiene una historia de lucha.<br><br>${ajustesGenerales}<br><br>🔹 Hecho por mujeres. Hecho por el planeta.` },
+      { nombre: "La Cuesta de la Vida", mensaje: `🪑 Este banco representa el apoyo en los momentos difíciles.<br><br>${ajustesGenerales}<br><br>🔹 Para construir comunidad.` },
       { nombre: "Inspiración 3", mensaje: `🌱 Historias que transforman desechos en conciencia.<br><br>${ajustesGenerales}` },
       { nombre: "Inspiración 4", mensaje: `🌊 Nació para evitar que lo descartado contamine.<br><br>${ajustesGenerales}` },
       { nombre: "Inspiración 5", mensaje: `💢 Convertimos residuos en futuro.<br><br>${ajustesGenerales}` },
@@ -158,8 +158,56 @@
       { nombre: "Inspiración 7", mensaje: `🌍 De lo descartado, algo bello y útil.<br><br>${ajustesGenerales}` },
       { nombre: "Inspiración 8", mensaje: `🪑 Cambio desde lo más simple.<br><br>${ajustesGenerales}` },
       { nombre: "Inspiración 9", mensaje: `🌱 Verde, comunitario, consciente.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 10", mensaje: `🔀 Todo puede tener una segunda vida.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 10", mensaje: `🔀 Todo puede tener una segunda vida.<br><br>${ajustesGenerales}` }
     ];
+
+    function dibujarRuleta() {
+      const gradosPorSector = 2 * Math.PI / sectores.length;
+      for (let i = 0; i < sectores.length; i++) {
+        const inicio = angulo + i * gradosPorSector;
+        const fin = inicio + gradosPorSector;
+        ctx.beginPath();
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, inicio, fin);
+        ctx.fillStyle = `hsl(${i * (360 / sectores.length)}, 70%, 65%)`;
+        ctx.fill();
+        ctx.save();
+        ctx.translate(150, 150);
+        ctx.rotate(inicio + gradosPorSector / 2);
+        ctx.fillStyle = "#000";
+        ctx.font = "14px Arial";
+        ctx.fillText(sectores[i].nombre, 90, 5);
+        ctx.restore();
+      }
+    }
+
+    function animar() {
+      if (girando) {
+        angulo += velocidad;
+        velocidad *= 0.98;
+        if (velocidad < 0.002) {
+          girando = false;
+          mostrarResultado();
+        }
+        requestAnimationFrame(animar);
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.translate(150, 150);
+      ctx.rotate(angulo);
+      ctx.translate(-150, -150);
+      dibujarRuleta();
+      ctx.restore();
+    }
+
+    function mostrarResultado() {
+      const gradosPorSector = 2 * Math.PI / sectores.length;
+      const anguloActual = (2 * Math.PI - (angulo % (2 * Math.PI))) % (2 * Math.PI);
+      const index = Math.floor(anguloActual / gradosPorSector);
+      const seleccionado = sectores[index];
+      document.getElementById("nombreSeleccionado").textContent = seleccionado.nombre;
+      document.getElementById("resultado").innerHTML = `<p>${seleccionado.mensaje}</p><a href='https://wa.me/5493814486335' class='btn-whatsapp'>Enviar por WhatsApp</a> <a href='https://www.cava306srl.com' class='btn-cava'>Conocer CAVA 306</a>`;
+    }
 
     document.getElementById("girarBtn").onclick = () => {
       const flecha = document.getElementById("flecha-svg");
