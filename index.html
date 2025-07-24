@@ -75,25 +75,24 @@
   <div id="resultado"></div>
 
   <script>
+    const ajustesGenerales = `🟣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
+
     const sectores = [
       {
         nombre: "Lucha de las Mujeres",
         titulo: "♀️🌿 Este banco también sostiene una historia de lucha.",
-        descripcion: `“Las mujeres sostienen la mitad del cielo…” – Eduardo Galeano\n\n♀️🌍 Como las mujeres: resistentes, esenciales, transformadoras.\n\nEste banco no es solo un lugar para descansar.\nEs un homenaje a la fuerza silenciosa que transforma el mundo.\n\n🟣 Fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).\n🌳 Reemplaza madera tradicional, protegiendo nuestros árboles.\n\n🔹 Como el plástico reciclado: resisten, se reinventan y sostienen.\n🔹 Como el planeta: que pide ser cuidado, regenerado y defendido.\n\n🟢 Reducimos emisiones y tala, mostrando que la belleza surge de lo descartado.`
+        descripcion: `“Las mujeres sostienen la mitad del cielo…” – Eduardo Galeano<br><br>♀️🌍 Como las mujeres: resistentes, esenciales, transformadoras.<br><br>Este banco no es solo un lugar para descansar.<br>Es un homenaje a la fuerza silenciosa que transforma el mundo.<br><br>${ajustesGenerales}<br><br>🔹 Como el plástico reciclado: resisten, se reinventan y sostienen.<br>🔹 Como el planeta: que pide ser cuidado, regenerado y defendido.<br><br>🟢 La belleza también puede surgir de lo descartado.`
       },
       {
         nombre: "La Cuesta de la Vida",
         titulo: "A veces el camino se vuelve empinado...",
-        descripcion: `Inspirado en Federico García Hamilton\n\nHay caminos que parecen fáciles… hasta que se tornan empinados.\n\nEn esos momentos, no se trata de avanzar solo.\nSe trata de apoyarse, de tomar la mano del otro.\n\nEste banco fue hecho con materiales recuperados.\nUn lugar donde sentarse, conversar y compartir.\n\n“Buscá a tus amigos, tomales sus manos, apoyate en ellos...”` 
+        descripcion: `Inspirado en Federico García Hamilton<br><br>Hay caminos que parecen fáciles… hasta que se tornan empinados.<br><br>En esos momentos, no se trata de avanzar solo.<br>Se trata de apoyarse, de tomar la mano del otro.<br><br>Este banco fue hecho con materiales recuperados.<br>Un lugar donde sentarse, conversar y compartir.<br><br>${ajustesGenerales}<br><br>“Buscá a tus amigos, tomales sus manos, apoyate en ellos…”`
       },
-      { nombre: "Inspiración 3", titulo: "Un banco, mil historias.", descripcion: "Este banco es una pausa en la rutina y un símbolo del cambio. Fabricado con plástico reciclado, es testimonio de cómo lo descartado puede convertirse en un legado." },
-      { nombre: "Inspiración 4", titulo: "Raíces fuertes, ramas abiertas.", descripcion: "Así como los árboles, nuestras comunidades se fortalecen con raíces compartidas y valores reciclados." },
-      { nombre: "Inspiración 5", titulo: "Sentarse también es avanzar.", descripcion: "Un banco reciclado que invita a detenerse, mirar y reflexionar sobre el camino recorrido." },
-      { nombre: "Inspiración 6", titulo: "Pequeñas acciones, grandes impactos.", descripcion: "Este banco fue una botella. Hoy es un lugar de encuentro. ¿Qué más podemos transformar juntos?" },
-      { nombre: "Inspiración 7", titulo: "Cuidar lo nuestro.", descripcion: "Protegemos árboles, recuperamos plástico, regeneramos futuro. Cada banco es un gesto de amor colectivo." },
-      { nombre: "Inspiración 8", titulo: "Diseño con propósito.", descripcion: "Lo funcional también puede ser bello. Estos bancos demuestran que el diseño consciente es posible." },
-      { nombre: "Inspiración 9", titulo: "El futuro se sienta aquí.", descripcion: "Más que un banco: un manifiesto silencioso del compromiso con el ambiente." },
-      { nombre: "Inspiración 10", titulo: "CAVA 306: Transformar es nuestra misión.", descripcion: "Gracias por ser parte de un cambio que se construye listón a listón, historia a historia." }
+      ...Array.from({ length: 8 }, (_, i) => ({
+        nombre: `Inspiración ${i + 3}`,
+        titulo: `Mensaje temático ${i + 3}`,
+        descripcion: `Este banco es un símbolo de transformación.<br><br>${ajustesGenerales}<br><br>Desde lo reciclado nace un espacio para la reflexión, el encuentro y la acción.<br>Cada listón es una historia de cambio.`
+      }))
     ];
 
     let angulo = 0;
@@ -152,7 +151,7 @@
       const resultado = document.getElementById("resultado");
       resultado.innerHTML = `
         <h2>${seleccionado.titulo}</h2>
-        <p>${seleccionado.descripcion.replace(/\n/g, '<br>')}</p>
+        <p>${seleccionado.descripcion}</p>
         <a class="btn-whatsapp" href="https://wa.me/5493814486335" target="_blank">Enviar WhatsApp</a>
         <a class="btn-cava" href="https://www.cava306srl.com" target="_blank">Visitar CAVA 306</a>
       `;
