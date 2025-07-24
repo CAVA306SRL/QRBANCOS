@@ -1,200 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lo esencial es invisible a los ojos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta Interactiva - CAVA 306</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #121212 url('https://images.unsplash.com/photo-1618221199287-e7ef7c38d88e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 60px 40px;
-      max-width: 900px;
-      border-radius: 20px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      animation: fadeIn 1.2s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(40px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: #ffffff;
-      margin-bottom: 25px;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #c0e0d0);
       text-align: center;
-    }
-
-    .intro {
-      font-size: 1.4rem;
-      color: #cccccc;
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .mensaje-profundo {
-      font-style: italic;
-      font-size: 1.25rem;
-      color: #dddddd;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .detalle {
-      font-size: 1.1rem;
-      color: #dddddd;
-      line-height: 1.8;
-      text-align: justify;
-      margin-bottom: 30px;
-    }
-
-    .impacto {
-      background-color: rgba(255,255,255,0.05);
-      border-left: 4px solid #4fc3f7;
       padding: 20px;
-      margin-top: 40px;
-      margin-bottom: 30px;
     }
-
-    .impacto h3 {
-      color: #4fc3f7;
-      margin-bottom: 15px;
-      font-size: 1.3rem;
+    #ruleta {
+      width: 300px;
+      height: 300px;
+      border: 10px solid #333;
+      border-radius: 50%;
+      margin: 30px auto;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
-
-    .impacto-lista {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    #puntero {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      margin-left: -10px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid red;
     }
-
-    .impacto-lista li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .impacto-lista li span {
-      flex-shrink: 0;
-    }
-
-    .firma {
-      text-align: center;
-      font-weight: bold;
-      color: #aaaaaa;
-      font-size: 1rem;
-      margin-top: 40px;
-    }
-
-    .firma a {
-      color: #4fc3f7;
-      text-decoration: none;
-      display: block;
-      margin-top: 5px;
-      font-weight: normal;
-    }
-
-    .firma img {
-      margin-top: 20px;
-      height: 70px;
-      border-radius: 12px;
-    }
-
-    .btn-wsp {
-      display: inline-block;
-      background-color: #25D366;
+    #girarBtn {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #009688;
       color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      margin: 40px auto 0;
-      text-align: center;
-      display: block;
-      width: fit-content;
-      transition: background 0.3s;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    .btn-wsp:hover {
-      background-color: #1ebe5d;
+    #resultado {
+      margin-top: 30px;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .btn-whatsapp, .btn-cava {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: white;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+    }
+    .btn-cava {
+      background: #3f51b5;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Lo esencial es invisible a los ojos.</h1>
-
-    <div class="intro">
-      Tal vez pensaste que era solo un banco más... pero no lo es.
-    </div>
-
-    <div class="mensaje-profundo">
-      Detrás de cada forma simple hay una historia. Como las personas, cuando miramos más profundo, descubrimos lo verdaderamente valioso.
-    </div>
-
-    <div class="detalle">
-      Este banco fue creado con maderas plásticas, hechas a partir de residuos reciclados. Cada tabla que ves surgió de materiales que alguna vez fueron considerados desechos.
-
-      <br><br>
-      El proceso comenzó con la recolección de plásticos en desuso, su clasificación, trituración y transformación mediante calor y presión, sin necesidad de químicos contaminantes.
-
-      <br><br>
-      A simple vista, parece solo un banco. Pero lleva dentro <strong>20,8 kg de transformación</strong>.  
-      Fabricado con <strong>plástico reciclado</strong> principalmente polietileno de alta y baja densidad, este banco representa un ahorro estimado de más de <strong>37 litros de petróleo crudo</strong> que hubieran sido necesarios para producir ese material de forma tradicional.
-
-      <br><br>
-      Además, contribuye a evitar la emisión de gases de efecto invernadero y la acumulación de residuos no biodegradables en vertederos, ríos o suelos.
-
-      <br><br>
-      Este banco no solo invita al descanso: <strong>es una acción concreta de economía circular, conciencia y compromiso ambiental</strong>.
-
-      <div class="impacto">
-        <h3>Impacto ambiental de este banco:</h3>
-        <ul class="impacto-lista">
-          <li><span>♻️</span> 20,8 kg de plástico reciclado</li>
-          <li><span>⛽</span> Ahorro de 37 litros de petróleo crudo</li>
-          <li><span>🌍</span> Kilos de desecho que no van a canales, arroyos, rios, etc.</li>
-          <li><span>💨</span> Menor emisión de CO₂ al medioambiente</li>
-        </ul>
-      </div>
-
-      Las estructuras metálicas fueron fabricadas artesanalmente. El diseño busca no solo funcionalidad y durabilidad, sino también conciencia. Aquí no estás simplemente descansando o compartiendo: estás participando de un acto de transformación.
-
-      <br><br>
-      <em>“Imaginá si cada banco que se usa también hablara del compromiso que tienen con el planeta.”</em>
-
-      <br><br>
-      Gracias por ser parte. Gracias por ver más allá.
-
-      <br><br>
-      <strong>Este proyecto fue impulsado por <span style="color:#4fc3f7;">EcoLineal</span>, el área sustentable de <span style="color:#4fc3f7;">CAVA 306 SRL</span>, comprometida con acciones que regeneran y revalorizan nuestro entorno.</strong>
-    </div>
-
-    <a class="btn-wsp" href="https://wa.me/5493815718760" target="_blank">
-      📲 Consultar por bancos sustentables
-    </a>
-
-    <div class="firma">
-      Un proyecto con alma<br>
-      <a href="https://www.cava306srl.com" target="_blank">www.cava306srl.com</a><br>
-      <img src="https://i.postimg.cc/NjrRPRB6/Screenshot-2025-06-25-11-14-30-353-com-whatsapp-edit.jpg" alt="Logo CAVA 306 SRL">
-    </div>
+  <h1>🌱 Ruleta de Historias - CAVA 306</h1>
+  <div id="ruleta">
+    <div id="puntero"></div>
+    <canvas id="canvas" width="300" height="300"></canvas>
   </div>
+  <button id="girarBtn">🎯 Girar / Detener</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    const sectores = [
+      {
+        nombre: "Lucha de las Mujeres",
+        titulo: "♀️🌿 Este banco también sostiene una historia de lucha.",
+        descripcion: `“Las mujeres sostienen la mitad del cielo…” – Eduardo Galeano\n\n♀️🌍 Como las mujeres: resistentes, esenciales, transformadoras.\n\nEste banco no es solo un lugar para descansar.\nEs un homenaje a la fuerza silenciosa que transforma el mundo.\n\n🟣 Fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).\n🌳 Reemplaza madera tradicional, protegiendo nuestros árboles.\n\n🔹 Como el plástico reciclado: resisten, se reinventan y sostienen.\n🔹 Como el planeta: que pide ser cuidado, regenerado y defendido.\n\n🟢 Reducimos emisiones y tala, mostrando que la belleza surge de lo descartado.`
+      },
+      {
+        nombre: "La Cuesta de la Vida",
+        titulo: "A veces el camino se vuelve empinado...",
+        descripcion: `Inspirado en Federico García Hamilton\n\nHay caminos que parecen fáciles… hasta que se tornan empinados.\n\nEn esos momentos, no se trata de avanzar solo.\nSe trata de apoyarse, de tomar la mano del otro.\n\nEste banco fue hecho con materiales recuperados.\nUn lugar donde sentarse, conversar y compartir.\n\n“Buscá a tus amigos, tomales sus manos, apoyate en ellos...”` 
+      },
+      { nombre: "Inspiración 3", titulo: "Un banco, mil historias.", descripcion: "Este banco es una pausa en la rutina y un símbolo del cambio. Fabricado con plástico reciclado, es testimonio de cómo lo descartado puede convertirse en un legado." },
+      { nombre: "Inspiración 4", titulo: "Raíces fuertes, ramas abiertas.", descripcion: "Así como los árboles, nuestras comunidades se fortalecen con raíces compartidas y valores reciclados." },
+      { nombre: "Inspiración 5", titulo: "Sentarse también es avanzar.", descripcion: "Un banco reciclado que invita a detenerse, mirar y reflexionar sobre el camino recorrido." },
+      { nombre: "Inspiración 6", titulo: "Pequeñas acciones, grandes impactos.", descripcion: "Este banco fue una botella. Hoy es un lugar de encuentro. ¿Qué más podemos transformar juntos?" },
+      { nombre: "Inspiración 7", titulo: "Cuidar lo nuestro.", descripcion: "Protegemos árboles, recuperamos plástico, regeneramos futuro. Cada banco es un gesto de amor colectivo." },
+      { nombre: "Inspiración 8", titulo: "Diseño con propósito.", descripcion: "Lo funcional también puede ser bello. Estos bancos demuestran que el diseño consciente es posible." },
+      { nombre: "Inspiración 9", titulo: "El futuro se sienta aquí.", descripcion: "Más que un banco: un manifiesto silencioso del compromiso con el ambiente." },
+      { nombre: "Inspiración 10", titulo: "CAVA 306: Transformar es nuestra misión.", descripcion: "Gracias por ser parte de un cambio que se construye listón a listón, historia a historia." }
+    ];
+
+    let angulo = 0;
+    let girando = false;
+    let velocidad = 0;
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function dibujarRuleta() {
+      const total = sectores.length;
+      const arc = 2 * Math.PI / total;
+      for (let i = 0; i < total; i++) {
+        const inicio = i * arc + angulo;
+        ctx.beginPath();
+        ctx.fillStyle = `hsl(${i * (360 / total)}, 70%, 60%)`;
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, inicio, inicio + arc);
+        ctx.fill();
+        ctx.save();
+        ctx.translate(150, 150);
+        ctx.rotate(inicio + arc / 2);
+        ctx.fillStyle = "#000";
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillText(sectores[i].nombre, 30, 5);
+        ctx.restore();
+      }
+    }
+
+    function animar() {
+      if (!girando && velocidad <= 0) return;
+      angulo += velocidad;
+      velocidad *= 0.98;
+      if (velocidad < 0.002) velocidad = 0;
+      ctx.clearRect(0, 0, 300, 300);
+      dibujarRuleta();
+      requestAnimationFrame(animar);
+    }
+
+    document.getElementById("girarBtn").onclick = () => {
+      if (!girando) {
+        velocidad = Math.random() * 0.3 + 0.3;
+        girando = true;
+        animar();
+        setTimeout(() => girando = false, 3000);
+      } else {
+        girando = false;
+        velocidad = 0;
+        mostrarResultado();
+      }
+    }
+
+    function mostrarResultado() {
+      const total = sectores.length;
+      const index = Math.floor((total - ((angulo % (2 * Math.PI)) / (2 * Math.PI)) * total)) % total;
+      const seleccionado = sectores[index];
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = `
+        <h2>${seleccionado.titulo}</h2>
+        <p>${seleccionado.descripcion.replace(/\n/g, '<br>')}</p>
+        <a class="btn-whatsapp" href="https://wa.me/5493814486335" target="_blank">Enviar WhatsApp</a>
+        <a class="btn-cava" href="https://www.cava306srl.com" target="_blank">Visitar CAVA 306</a>
+      `;
+    }
+
+    dibujarRuleta();
+  </script>
 </body>
 </html>
