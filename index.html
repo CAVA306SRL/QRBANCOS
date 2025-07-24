@@ -142,7 +142,24 @@
 
     const ajustesGenerales = `💣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
 
-    const sectores = [...]; // contenido igual que antes
+    const sectores = [
+      {
+        nombre: "Lucha de las Mujeres",
+        mensaje: `♀️ Este banco también sostiene una historia de lucha.<br><br>${ajustesGenerales}<br><br>🔹 Hecho por mujeres. Hecho por el planeta.`
+      },
+      {
+        nombre: "La Cuesta de la Vida",
+        mensaje: `🪑 Este banco representa el apoyo en los momentos difíciles.<br><br>${ajustesGenerales}<br><br>🔹 Para construir comunidad.`
+      },
+      { nombre: "Inspiración 3", mensaje: `🌱 Historias que transforman desechos en conciencia.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 4", mensaje: `🌊 Nació para evitar que lo descartado contamine.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 5", mensaje: `💢 Convertimos residuos en futuro.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 6", mensaje: `♻️ Habitamos espacios públicos con conciencia.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 7", mensaje: `🌍 De lo descartado, algo bello y útil.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 8", mensaje: `🪑 Cambio desde lo más simple.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 9", mensaje: `🌱 Verde, comunitario, consciente.<br><br>${ajustesGenerales}` },
+      { nombre: "Inspiración 10", mensaje: `🔀 Todo puede tener una segunda vida.<br><br>${ajustesGenerales}` },
+    ];
 
     document.getElementById("girarBtn").onclick = () => {
       const flecha = document.getElementById("flecha-svg");
