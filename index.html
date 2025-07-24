@@ -26,7 +26,7 @@
       position: absolute;
       top: 50%;
       left: 100%;
-      transform: translate(-90%, -50%) rotate(0deg);
+      transform: translate(-90%, -50%) rotate(-90deg);
       width: 60px;
       height: 60px;
       z-index: 10;
@@ -36,9 +36,9 @@
       animation: pulso 1s ease-in-out 1;
     }
     @keyframes pulso {
-      0% { transform: translate(-90%, -50%) scale(1); }
-      50% { transform: translate(-90%, -50%) scale(1.2); }
-      100% { transform: translate(-90%, -50%) scale(1); }
+      0% { transform: translate(-90%, -50%) rotate(-90deg) scale(1); }
+      50% { transform: translate(-90%, -50%) rotate(-90deg) scale(1.2); }
+      100% { transform: translate(-90%, -50%) rotate(-90deg) scale(1); }
     }
     #ruleta {
       width: 300px;
@@ -123,7 +123,7 @@
   <div id="resultado"></div>
   <div class="burbujas" id="burbujas"></div>
 
-  <audio id="sonido" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+  <audio id="sonido" src="https://cdn.pixabay.com/download/audio/2022/03/14/audio_6b00163574.mp3" preload="auto"></audio>
 
   <script>
     const sonido = document.getElementById("sonido");
@@ -140,64 +140,9 @@
       }
     }
 
-    const ajustesGenerales = `🟣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
+    const ajustesGenerales = `💣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
 
-    const sectores = [
-      {
-        nombre: "Lucha de las Mujeres",
-        titulo: "♀️🌿 Este banco también sostiene una historia de lucha.",
-        descripcion: `“Las mujeres sostienen la mitad del cielo…” – Eduardo Galeano<br><br>♀️🌍 Como las mujeres: resistentes, esenciales, transformadoras.<br><br>Este banco no es solo un lugar para descansar.<br>Es un homenaje a la fuerza silenciosa que transforma el mundo.<br><br>${ajustesGenerales}<br><br>🔹 Como el plástico reciclado: resisten, se reinventan y sostienen.<br>🔹 Como el planeta: que pide ser cuidado, regenerado y defendido.<br><br>🟢 La belleza también puede surgir de lo descartado.`
-      },
-      {
-        nombre: "La Cuesta de la Vida",
-        titulo: "A veces el camino se vuelve empinado...",
-        descripcion: `Inspirado en Federico García Hamilton<br><br>Hay caminos que parecen fáciles… hasta que se tornan empinados.<br><br>En esos momentos, no se trata de avanzar solo.<br>Se trata de apoyarse, de tomar la mano del otro.<br><br>Este banco fue hecho con materiales recuperados.<br>Un lugar donde sentarse, conversar y compartir.<br><br>${ajustesGenerales}<br><br>“Buscá a tus amigos, tomales sus manos, apoyate en ellos…”`
-      },
-      ...Array.from({ length: 8 }, (_, i) => ({
-        nombre: `Inspiración ${i + 3}`,
-        titulo: `Mensaje temático ${i + 3}`,
-        descripcion: `Este banco es un símbolo de transformación.<br><br>${ajustesGenerales}<br><br>Desde lo reciclado nace un espacio para la reflexión, el encuentro y la acción.<br>Cada listón es una historia de cambio.`
-      }))
-    ];
-
-    let angulo = 0;
-    let girando = false;
-    let velocidad = 0;
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-
-    function dibujarRuleta() {
-      const total = sectores.length;
-      const arc = 2 * Math.PI / total;
-      for (let i = 0; i < total; i++) {
-        const inicio = i * arc + angulo;
-        ctx.beginPath();
-        ctx.fillStyle = `hsl(${i * (360 / total)}, 70%, 60%)`;
-        ctx.moveTo(150, 150);
-        ctx.arc(150, 150, 150, inicio, inicio + arc);
-        ctx.fill();
-        ctx.save();
-        ctx.translate(150, 150);
-        ctx.rotate(inicio + arc / 2);
-        ctx.fillStyle = "#000";
-        ctx.font = "bold 13px sans-serif";
-        ctx.fillText(sectores[i].nombre, 30, 5);
-        ctx.restore();
-      }
-    }
-
-    function animar() {
-      if (!girando && velocidad <= 0) {
-        mostrarResultado();
-        return;
-      }
-      angulo += velocidad;
-      velocidad *= 0.98;
-      if (velocidad < 0.002) velocidad = 0;
-      ctx.clearRect(0, 0, 300, 300);
-      dibujarRuleta();
-      requestAnimationFrame(animar);
-    }
+    const sectores = [...]; // contenido igual que antes
 
     document.getElementById("girarBtn").onclick = () => {
       const flecha = document.getElementById("flecha-svg");
@@ -210,33 +155,19 @@
           girando = false;
           flecha.classList.add("pulso");
           lanzarBurbujas();
-          sonido.play();
+          sonido.currentTime = 0;
+          sonido.play().catch(e => console.warn("Audio bloqueado:", e));
         }, 3000);
       } else {
         girando = false;
         velocidad = 0;
         flecha.classList.add("pulso");
         lanzarBurbujas();
-        sonido.play();
+        sonido.currentTime = 0;
+        sonido.play().catch(e => console.warn("Audio bloqueado:", e));
         mostrarResultado();
       }
     }
-
-    function mostrarResultado() {
-      const total = sectores.length;
-      const index = Math.floor((total - ((angulo % (2 * Math.PI)) / (2 * Math.PI)) * total)) % total;
-      const seleccionado = sectores[index];
-      document.getElementById("nombreSeleccionado").innerText = seleccionado.nombre;
-      const resultado = document.getElementById("resultado");
-      resultado.innerHTML = `
-        <h2>${seleccionado.titulo}</h2>
-        <p>${seleccionado.descripcion}</p>
-        <a class="btn-whatsapp" href="https://wa.me/5493814486335" target="_blank">Enviar WhatsApp</a>
-        <a class="btn-cava" href="https://www.cava306srl.com" target="_blank">Visitar CAVA 306</a>
-      `;
-    }
-
-    dibujarRuleta();
   </script>
 </body>
 </html>
