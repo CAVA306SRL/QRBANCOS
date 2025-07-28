@@ -1,238 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruleta Interactiva - CAVA 306</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homenaje a Ángel Brito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #e0f7f1, #b8e2d0);
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #f5f5f5, #d2e0dc);
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      padding: 20px;
-      color: #2e4d3c;
-      overflow-x: hidden;
+      padding: 2rem;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      max-width: 800px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     h1 {
-      font-size: 26px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #1e3d38;
+      margin-bottom: 1rem;
     }
-    #ruleta-container {
-      position: relative;
-      display: inline-block;
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
-    #flecha-svg {
-      position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translate(-90%, -50%) rotate(-90deg);
-      width: 60px;
-      height: 60px;
-      z-index: 10;
-      transition: transform 0.3s ease, filter 0.3s ease;
+    .logo {
+      margin-top: 2rem;
+      max-width: 150px;
     }
-    #flecha-svg.pulso {
-      animation: pulso 1s ease-in-out 1;
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
     }
-    @keyframes pulso {
-      0% { transform: translate(-90%, -50%) rotate(-90deg) scale(1); }
-      50% { transform: translate(-90%, -50%) rotate(-90deg) scale(1.2); }
-      100% { transform: translate(-90%, -50%) rotate(-90deg) scale(1); }
-    }
-    #ruleta {
-      width: 300px;
-      height: 300px;
-      border: 12px solid #2e4d3c;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(0,0,0,0.2);
-    }
-    #girarBtn {
-      padding: 12px 28px;
-      font-size: 18px;
-      background-color: #007e66;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    #resultado, #seleccionado {
-      margin-top: 30px;
-      padding: 20px;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .btn-whatsapp, .btn-cava {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 15px;
-      border-radius: 5px;
+    a {
+      color: #1e3d38;
       text-decoration: none;
-      color: white;
       font-weight: bold;
     }
-    .btn-whatsapp {
-      background: #25D366;
-    }
-    .btn-cava {
-      background: #2b6cb0;
-    }
-    .burbujas {
-      position: fixed;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .burbuja {
-      position: absolute;
-      bottom: -50px;
-      width: 15px;
-      height: 15px;
-      background: rgba(0,150,136,0.4);
-      border-radius: 50%;
-      animation: subir 10s linear infinite;
-    }
-    @keyframes subir {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-120vh); opacity: 0; }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>🌿 Ruleta de Historias - CAVA 306</h1>
-
-  <div id="ruleta-container">
-    <svg id="flecha-svg" viewBox="0 0 100 100">
-      <polygon points="0,50 100,25 100,75" fill="#009688" stroke="#004d40" stroke-width="3" />
-    </svg>
-    <div id="ruleta">
-      <canvas id="canvas" width="300" height="300"></canvas>
+  <div class="container">
+    <h1>"Lo esencial es invisible a los ojos"</h1>
+    <p>Querido Ángel,<br><br>
+      Hoy, <strong>28 de julio de 2025</strong>, celebramos tus <strong>71 años</strong>, y desde <strong>CAVA 306 SRL</strong> queremos acompañarte con un homenaje que busca hablar al corazón.
+      <br><br>
+      A simple vista, este banco puede parecer uno más. Pero al igual que muchas cosas valiosas en la vida, lo más profundo no siempre se ve. Este banco encierra una historia de transformación: contiene <strong>20 kg de plástico reciclado</strong>, material que alguna vez fue desecho y hoy, en manos que ven más allá, se convirtió en utilidad, en símbolo, en conexión.
+      <br><br>
+      Así también ha sido tu camino. Porque aunque muchas veces tus gestos hayan pasado en silencio, tu forma de vivir, tu humildad, tu constancia y tu manera de mirar el mundo han dejado una huella enorme en quienes te rodeamos.
+      <br><br>
+      Este banco es nuestro regalo, pero más que eso, es un <strong>acto de admiración</strong>. Es una invitación a seguir compartiendo momentos, a sentarte con alguien querido, a mirar el mundo con calma, con gratitud, con sentido.
+      <br><br>
+      En cada rincón de este presente hay algo tuyo. Porque inspirás. Porque dejás marca. Porque nos recordás, día a día, que lo esencial, lo verdadero, lo eterno... es invisible a los ojos.
+      <br><br>
+      <em>Feliz cumpleaños, Ángel.</em><br>
+      Con todo nuestro cariño,
+      <br>
+      <strong>CAVA 306 SRL</strong>
+    </p>
+    <img src="https://i.postimg.cc/504NcY8R/CAVA306-COLOR-1.png" alt="Logo CAVA 306 SRL" class="logo">
+    <div class="footer">
+      <a href="https://www.cava306srl.com" target="_blank">www.cava306srl.com</a>
     </div>
   </div>
-
-  <button id="girarBtn">🎯 Girar / Detener</button>
-
-  <div id="seleccionado"><strong>Resultado:</strong> <span id="nombreSeleccionado">---</span></div>
-  <div id="resultado"></div>
-  <div class="burbujas" id="burbujas"></div>
-
-  <audio id="sonido" src="https://cdn.pixabay.com/audio/2022/03/14/audio_6b00163574.mp3" preload="auto"></audio>
-
-  <script>
-    const sonido = document.getElementById("sonido");
-    const burbujasContenedor = document.getElementById("burbujas");
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    let angulo = 0;
-    let velocidad = 0;
-    let girando = false;
-
-    function lanzarBurbujas() {
-      for (let i = 0; i < 10; i++) {
-        const b = document.createElement("div");
-        b.classList.add("burbuja");
-        b.style.left = Math.random() * 100 + "%";
-        b.style.animationDuration = (6 + Math.random() * 4) + "s";
-        b.style.width = b.style.height = (10 + Math.random() * 10) + "px";
-        burbujasContenedor.appendChild(b);
-        setTimeout(() => b.remove(), 10000);
-      }
-    }
-
-    const ajustesGenerales = `💣 Este banco está fabricado con 20,8 kg de plástico reciclado (HDPE y LDPE).<br>🌳 Reemplaza madera tradicional, evitando la tala de árboles.<br>🌍 Reduce emisiones de CO₂ y evita que residuos plásticos terminen en canales, arroyos o ríos.`;
-
-    const sectores = [
-      { nombre: "Lucha de las Mujeres", mensaje: `♀️ Este banco también sostiene una historia de lucha.<br><br>${ajustesGenerales}<br><br>🔹 Hecho por mujeres. Hecho por el planeta.` },
-      { nombre: "La Cuesta de la Vida", mensaje: `🪑 Este banco representa el apoyo en los momentos difíciles.<br><br>${ajustesGenerales}<br><br>🔹 Para construir comunidad.` },
-      { nombre: "Inspiración 3", mensaje: `🌱 Historias que transforman desechos en conciencia.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 4", mensaje: `🌊 Nació para evitar que lo descartado contamine.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 5", mensaje: `💢 Convertimos residuos en futuro.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 6", mensaje: `♻️ Habitamos espacios públicos con conciencia.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 7", mensaje: `🌍 De lo descartado, algo bello y útil.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 8", mensaje: `🪑 Cambio desde lo más simple.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 9", mensaje: `🌱 Verde, comunitario, consciente.<br><br>${ajustesGenerales}` },
-      { nombre: "Inspiración 10", mensaje: `🔀 Todo puede tener una segunda vida.<br><br>${ajustesGenerales}` }
-    ];
-
-    function dibujarRuleta() {
-      const gradosPorSector = 2 * Math.PI / sectores.length;
-      for (let i = 0; i < sectores.length; i++) {
-        const inicio = angulo + i * gradosPorSector;
-        const fin = inicio + gradosPorSector;
-        ctx.beginPath();
-        ctx.moveTo(150, 150);
-        ctx.arc(150, 150, 150, inicio, fin);
-        ctx.fillStyle = `hsl(${i * (360 / sectores.length)}, 70%, 65%)`;
-        ctx.fill();
-        ctx.save();
-        ctx.translate(150, 150);
-        ctx.rotate(inicio + gradosPorSector / 2);
-        ctx.fillStyle = "#000";
-        ctx.font = "14px Arial";
-        ctx.fillText(sectores[i].nombre, 90, 5);
-        ctx.restore();
-      }
-    }
-
-    function animar() {
-      if (girando) {
-        angulo += velocidad;
-        velocidad *= 0.98;
-        if (velocidad < 0.002) {
-          girando = false;
-          mostrarResultado();
-        }
-        requestAnimationFrame(animar);
-      }
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.save();
-      ctx.translate(150, 150);
-      ctx.rotate(angulo);
-      ctx.translate(-150, -150);
-      dibujarRuleta();
-      ctx.restore();
-    }
-
-    function mostrarResultado() {
-      const gradosPorSector = 2 * Math.PI / sectores.length;
-      const anguloActual = (2 * Math.PI - (angulo % (2 * Math.PI))) % (2 * Math.PI);
-      const index = Math.floor(anguloActual / gradosPorSector);
-      const seleccionado = sectores[index];
-      document.getElementById("nombreSeleccionado").textContent = seleccionado.nombre;
-      document.getElementById("resultado").innerHTML = `<p>${seleccionado.mensaje}</p><a href='https://wa.me/5493814486335' class='btn-whatsapp'>Enviar por WhatsApp</a> <a href='https://www.cava306srl.com' class='btn-cava'>Conocer CAVA 306</a>`;
-    }
-
-    document.getElementById("girarBtn").onclick = () => {
-      const flecha = document.getElementById("flecha-svg");
-      flecha.classList.remove("pulso");
-      if (!girando) {
-        velocidad = Math.random() * 0.3 + 0.3;
-        girando = true;
-        animar();
-        setTimeout(() => {
-          girando = false;
-          flecha.classList.add("pulso");
-          lanzarBurbujas();
-          sonido.currentTime = 0;
-          sonido.play().catch(e => console.warn("Audio bloqueado:", e));
-        }, 3000);
-      } else {
-        girando = false;
-        velocidad = 0;
-        flecha.classList.add("pulso");
-        lanzarBurbujas();
-        sonido.currentTime = 0;
-        sonido.play().catch(e => console.warn("Audio bloqueado:", e));
-        mostrarResultado();
-      }
-    }
-  </script>
 </body>
 </html>
